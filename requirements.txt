@@ -1,0 +1,11 @@
+h5py
+jupyterlab
+pandas
+scikit-learn
+scipy
+numpy
+matplotlib
+ipywidgets
+torchvision
+torchaudio
+torchdata

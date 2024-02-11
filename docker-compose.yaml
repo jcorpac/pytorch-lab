@@ -1,0 +1,23 @@
+version: "3.8"  # Specify a compatible version
+
+services:
+  pytorch-lab:
+    image: jcorpac/pytorch-lab:latest
+    container_name: pytorch-lab  # Set container name
+    restart: unless-stopped  # Ensure service restarts on failure
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all  # Access all available GPUs
+              capabilities: [gpu]
+    volumes:
+      - pytorch:/torch/notebooks  # Mount volume for notebooks
+      - jupyter-config:/root/.jupyter # Mount volume for jupyter config
+    ports:
+      - "8888:8888"  # Expose port 8888
+
+volumes:
+  pytorch:  # Define the volume for notebooks
+  jupyter-config:  # Create volume for jupyter config
