@@ -13,11 +13,10 @@ services:
               count: all  # Access all available GPUs
               capabilities: [gpu]
     volumes:
-      - pytorch:/torch/notebooks  # Mount volume for notebooks
+      - ./notebooks:/torch/notebooks  # Mount volume for notebooks
       - jupyter-config:/root/.jupyter # Mount volume for jupyter config
     ports:
       - "8888:8888"  # Expose port 8888
 
 volumes:
-  pytorch:  # Define the volume for notebooks
   jupyter-config:  # Create volume for jupyter config

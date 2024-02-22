@@ -43,14 +43,16 @@ If you'd like to customize the image, follow these steps:
 
 ### Using Docker
 
-``` docker run -d --rm --gpus all -p 8888:8888 -v pytorch:/torch/notebooks -v jupyter-config:/root/.jupyter --name pytorch-lab jcorpac/pytorch-lab:latest ```
+For Windows: ``` docker run -d --rm --gpus all -p 8888:8888 -v ${PWD}/notebooks:/torch/notebooks -v jupyter-config:/root/.jupyter --name pytorch-lab jcorpac/pytorch-lab:latest ```
+
+For Linux: ``` docker run -d --rm --gpus all -p 8888:8888 -v $(pwd)/notebooks:/torch/notebooks -v jupyter-config:/root/.jupyter --name pytorch-lab jcorpac/pytorch-lab:latest ```
 
 * This will map port 8888 (or whichever port your Jupyter environment is configured for) on your host machine to the container.
 * The -d flag will run the container in the background.
 * The --rm flag will remove the container when it is stopped.
 * The --gpus all tag will allow for passthrough of the Nvidia GPU drivers on your machine.
-* The first -v tag will attach, a volume called "pytorch" to your container in the /torch/notebooks directory. This volume will be used to store your Jupyter notebooks between instances of the container. If no volume named "pytorch" exists, it will be created. If you have an existing folder with Jupyter notebooks, you can mount that folder here in place of "pytorch".
-* The second -v tag will attach, a volume called "jupyter-config" to your container to store Jupyter configuration files. This volume will be used to store your Jupyter configuration between instances of the container. If no volume named "jupyter-config" exists, it will be created.
+* The first -v tag will attach the notebooks directory in this repository to the /torch/notebooks directory in your container. This folder will be used to store your Jupyter notebooks between instances of the container. Any changes made to this folder will be accessible outside of your container, so feel free to store your notebooks here.
+* The second -v tag will attach a volume called "jupyter-config" to your container to store Jupyter configuration files. This volume will be used to store your Jupyter configuration between instances of the container. If no volume named "jupyter-config" exists, it will be created.
 * The --name tag will set the name of the container to "pytorch-lab". This is optional, but recommended.
 * jcorpac/pytorch-lab:latest is the name of the Docker image to use. This will be the latest version of the image stored on my Docker Hub account. If you built a custom image, feel free to use that here instead.
 
