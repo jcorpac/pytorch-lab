@@ -12,6 +12,10 @@ COPY requirements.txt /tmp/requirements.txt
 # Install the requirements
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
+# Set pytorch as keras backend
+ENV KERAS_BACKEND=torch
+
+# Expose port 8888 for JupyterLab
 EXPOSE 8888
 
 # Start JupyterLab

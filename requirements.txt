@@ -9,3 +9,6 @@ ipywidgets
 torchvision
 torchaudio
 torchdata
+keras-cv
+keras-nlp
+keras
